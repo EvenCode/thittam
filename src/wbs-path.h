@@ -113,8 +113,6 @@ public:
     if (m_parts.back() != 0)
     {
       auto &x = new_path.m_parts[this->parts_length() - 1];
-
-      assert (x != 0);
       x = x - 1;
     }
 
