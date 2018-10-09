@@ -107,10 +107,16 @@ public:
     assert (! m_parts.empty ());
 
     WBSPath new_path (*this);
-    auto &x = new_path.m_parts[this->parts_length() - 1];
 
-    assert (x != 0);
-    x = x - 1;
+    // Checks if the node, is top node. Top nodes don't have previous sibling.
+    // Incase, the node is a top node, return the node itself.
+    if (m_parts.back() != 0)
+    {
+      auto &x = new_path.m_parts[this->parts_length() - 1];
+
+      assert (x != 0);
+      x = x - 1;
+    }
 
     return new_path;
   }
