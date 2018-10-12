@@ -67,6 +67,9 @@ public:
   virtual void add_sibling (
     const WBS::Path & t_path, const std::string& id) = 0;
   virtual void remove (const WBS::Path & t_path) = 0;
+
+  virtual void up (
+    const WBS::Path & path, const std::string& current_id, const std::string& previous_id) = 0;
 };
 
 NAMESPACE__THITTAM__END

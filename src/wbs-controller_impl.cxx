@@ -149,7 +149,26 @@ WBSControllerImpl::view_delete_clicked (void)
 void
 WBSControllerImpl::view_up_clicked (void)
 {
+  Log_I << "Controller Up";
 
+  for(size_t i = 0; i < m_selection.size(); i++)
+  {
+    auto previous_sibling = m_selection[i].previous_sibling();
+
+    if (m_selection[i] != previous_sibling)
+    {
+      auto c_it = m_wbs->get_task(m_selection[i]);
+      auto p_it = m_wbs->get_task(previous_sibling);
+
+      m_wbs->up (m_selection[i]);
+
+      m_view->up (m_selection[i], c_it->id(), p_it->id());
+    }
+    else
+    {
+      break;
+    }
+  }
 }
 
 void

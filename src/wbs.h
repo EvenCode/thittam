@@ -30,6 +30,7 @@ public:
 
   virtual std::shared_ptr<Task> add_child (const Path & parent_path) = 0;
   virtual std::shared_ptr<Task> add_sibling (const Path & path) = 0;
+  virtual std::shared_ptr<Task> up (Path & current_path) = 0;
 
   virtual std::shared_ptr<Task> get_task_at_level(
     const Path & path, size_t level) = 0;

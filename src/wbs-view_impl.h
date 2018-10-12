@@ -51,6 +51,8 @@ public:
   void add_sibling (const WBS::Path & t_path, const std::string& id);
   void remove (const WBS::Path & t_path);
 
+  void up (const WBS::Path & path, const std::string& current_id, const std::string& previous_id);
+
 private:
   void cb_on_row_selected (void);
   void cb_on_button_pressed (GdkEventButton * event);

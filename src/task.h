@@ -96,6 +96,8 @@ public:
   void remove_child (size_t index);
   void remove_child (std::shared_ptr<Task> task);
 
+  void up (size_t index);
+
   boost::property_tree::ptree dump (void);
 
 private:

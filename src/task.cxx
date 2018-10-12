@@ -51,6 +51,22 @@ Task::add_child_after (size_t index, std::shared_ptr<Task> task)
 }
 
 void
+Task::up (size_t index)
+{
+  auto current = index;
+  auto previous = index - 1;
+
+  auto temp = m_children[current];
+  auto temp_index = m_children[current]->m_id;
+
+  m_children[current] = m_children[previous];
+  m_children[current]->m_id = m_children[previous]->m_id;
+
+  m_children[previous] = temp;
+  m_children[previous]->m_id = temp_index;
+}
+
+void
 Task::remove_child (size_t index)
 {
   auto it = m_children.begin () + index;

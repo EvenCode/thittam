@@ -249,7 +249,7 @@ WBSViewImpl::add_child (
 
 void
 WBSViewImpl::add_sibling (const WBS::Path & t_path, const std::string& id)
-{
+{  
   auto g_path = wbs_path_to_gtk_tree_path (t_path);
   auto it = m_tree_store->get_iter (g_path);
   auto child = m_tree_store->insert_after (it->children());
@@ -263,6 +263,23 @@ WBSViewImpl::remove (const WBS::Path & t_path)
   auto g_path = wbs_path_to_gtk_tree_path(t_path);
   auto it = m_tree_store->get_iter (g_path);
   m_tree_store->erase (it);
+}
+
+void
+WBSViewImpl::up (const WBS::Path & path, const std::string& current_id, const std::string& previous_id)
+{
+  auto g_path_current = wbs_path_to_gtk_tree_path (path);
+  auto it_current = m_tree_store->get_iter (g_path_current);
+  auto & current_row = *it_current;
+
+  auto g_path_previous = wbs_path_to_gtk_tree_path (path.previous_sibling());
+  auto it_previous = m_tree_store->get_iter (g_path_previous);
+  auto & previous_row = *it_previous;
+
+  current_row[m_cols.id] = previous_id;
+  previous_row[m_cols.id] = current_id;
+
+  m_tree_store->iter_swap (it_current, it_previous);
 }
 
 void

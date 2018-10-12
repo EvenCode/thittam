@@ -96,6 +96,7 @@ public:
     assert (! m_parts.empty ());
 
     WBSPath new_path (*this);
+
     auto &x = new_path.m_parts[this->parts_length() - 1];
     x = x + 1;
 
