@@ -97,15 +97,13 @@ WBSImpl::add_sibling (const Path & path)
   return task;
 }
 
-std::shared_ptr<Task>
+void
 WBSImpl::up (Path & current_path)
 {
   auto parent = get_task_at_level(current_path, current_path.parts_length() - 1);
   auto current_index = current_path.last_part();
 
   parent->up (current_index);
-
-  return get_task(current_path);
 }
 
 NAMESPACE__THITTAM__END

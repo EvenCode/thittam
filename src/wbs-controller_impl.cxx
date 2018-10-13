@@ -160,9 +160,13 @@ WBSControllerImpl::view_up_clicked (void)
       auto c_it = m_wbs->get_task(m_selection[i]);
       auto p_it = m_wbs->get_task(previous_sibling);
 
+      Log_I << "previous_sibling" << previous_sibling;
+
       m_wbs->up (m_selection[i]);
 
       m_view->up (m_selection[i], c_it->id(), p_it->id());
+      m_selection[i] = previous_sibling;
+      Log_I << "previous_sibling" << previous_sibling;
     }
     else
     {
